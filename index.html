@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishal ♥ Swaranjali Wedding</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great_Vibes&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Vishal ♥ Swaranjali | Our Wedding</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great_Vibes&family=Playfair_Display:wght@400;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,297 +16,222 @@
         }
 
         body {
-            background: #f8e1e9;
+            font-family: 'Poppins', sans-serif;
+            background: #fffaf5;
             color: #4a2c3d;
             line-height: 1.6;
             overflow-x: hidden;
-            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
 
-        /* Navigation Bar */
-        .nav {
-            position: sticky;
+        /* Luxurious Background */
+        body::before {
+            content: '';
+            position: fixed;
             top: 0;
-            background: rgba(216, 27, 96, 0.9);
-            padding: 15px 0;
-            text-align: center;
-            z-index: 10;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/arabesque.png') repeat;
+            opacity: 0.05;
+            z-index: -1;
         }
 
-        .nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(45deg, #d81b60, #f06292);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
         }
 
-        .nav a:hover {
-            color: #fce4ec;
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+            font-family: 'Playfair_Display', serif;
+            font-weight: 700;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        /* Header with Particle Background */
-        .header {
+        .nav-link:hover {
+            color: #ffd700 !important;
+            transform: scale(1.1);
+        }
+
+        /* Hero Banner */
+        .hero {
+            position: relative;
             height: 100vh;
-            background: linear-gradient(to bottom, rgba(255, 192, 203, 0.8), rgba(74, 44, 61, 0.8));
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, rgba(216, 27, 96, 0.4), rgba(255, 245, 230, 0.8));
         }
 
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .header-images {
+        .hero-images {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             display: flex;
-            justify-content: space-between;
-            z-index: 2;
+            z-index: 1;
         }
 
-        .bride-image, .groom-image {
-            width: 45%;
+        .hero-image {
+            width: 50%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(80%);
+            filter: brightness(90%);
             transition: transform 0.5s ease;
         }
 
-        .bride-image {
-            border-right: 5px solid #d81b60;
-        }
-
-        .groom-image {
-            border-left: 5px solid #d81b60;
-        }
-
-        .header:hover .bride-image, .header:hover .groom-image {
+        .hero:hover .hero-image {
             transform: scale(1.05);
         }
 
-        .header-content {
-            max-width: 800px;
+        .hero-title {
+            position: relative;
+            z-index: 2;
             padding: 30px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-            position: relative;
-            z-index: 3;
-            box-shadow: 0 0 20px rgba(216, 27, 96, 0.5);
         }
 
-        .header-content h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 6rem;
-            text-shadow: 0 0 15px #d81b60;
-            animation: glow 2s ease-in-out infinite;
-            margin-bottom: 20px;
-            position: relative;
+        .hero-title h1 {
+            font-family: 'Great_Vibes', cursive;
+            font-size: 9rem;
+            color: #fff;
+            text-shadow: 0 0 25px rgba(216, 27, 96, 0.9), 0 0 15px rgba(255, 215, 0, 0.8);
+            animation: bounceIn 1.5s ease-in-out;
         }
 
-        .header-content h1::after {
-            content: '♥';
-            position: absolute;
-            font-size: 2rem;
-            top: -10px;
-            right: -30px;
-            animation: pulse 1.5s infinite;
-        }
-
-        .header-content .date {
-            font-size: 1.8rem;
-            letter-spacing: 3px;
-            margin: 20px 0;
-        }
-
-        .header-content .invitation {
-            font-size: 1.3rem;
-            font-style: italic;
-            animation: fadeIn 2s ease-in;
-        }
-
-        /* Couple Section with Flip Effect */
-        .couple-section {
+        /* Info Section */
+        .info-section {
             padding: 80px 20px;
+            background: linear-gradient(to bottom, #fffaf5, #fce4ec);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            border-top: 5px solid #ffd700;
+            box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section .invitation {
+            font-family: 'Playfair_Display', serif;
+            font-size: 1.8rem;
+            color: #4a2c3d;
+            font-style: italic;
+            margin-bottom: 30px;
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        .info-section .wedding-date {
+            font-family: 'Great_Vibes', cursive;
+            font-size: 3rem;
+            color: #d81b60;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(216, 27, 96, 0.5);
+            animation: fadeInUp 2.5s ease-in-out;
+        }
+
+        /* Guest Message */
+        .guest-message {
+            padding: 60px 20px;
+            background: #fce4ec;
+            text-align: center;
+            border-top: 3px dashed #d81b60;
+        }
+
+        .guest-message p {
+            font-family: 'Playfair_Display', serif;
+            font-size: 1.6rem;
+            color: #666;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 3s ease-in-out;
+        }
+
+        /* Particle Effects */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .particle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffd700 30%, transparent 80%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 120px 20px;
             background: linear-gradient(to bottom, #fff, #fce4ec);
             text-align: center;
         }
 
-        .couple-section h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
+        .gallery h2 {
+            font-family: 'Great_Vibes', cursive;
+            font-size: 5rem;
             color: #d81b60;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
         }
 
-        .couple-container {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            max-width: 1200px;
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
             margin: 0 auto;
-            flex-wrap: wrap;
         }
 
-        .couple-card {
-            width: 350px;
-            height: 450px;
-            perspective: 1000px;
+        .photo-item {
             position: relative;
-        }
-
-        .couple-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-
-        .couple-card:hover .couple-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .couple-card-front, .couple-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            background: #fef6f9;
+            overflow: hidden;
             border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .couple-card-back {
-            transform: rotateY(180deg);
-            background: #d81b60;
-            color: #fff;
-        }
-
-        .couple-card img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #d81b60;
-            margin-bottom: 20px;
-        }
-
-        .couple-card h3 {
-            font-size: 2rem;
-            color: #4a2c3d;
-        }
-
-        .couple-card p {
-            font-size: 1.1rem;
-            color: #666;
-        }
-
-        .couple-card-back p {
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        /* Venue Section */
-        .venue-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-            text-align: center;
-        }
-
-        .venue-section h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: #4a2c3d;
-            margin-bottom: 40px;
-        }
-
-        .venue-card {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .venue-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .venue-card button {
-            background: #d81b60;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 3px solid #ffd700;
         }
 
-        .venue-card button:hover {
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(216, 27, 96, 0.4);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-item:hover img {
             transform: scale(1.1);
         }
 
-        /* Photo Gallery with Lightbox */
-        .photo-gallery {
-            padding: 80px 20px;
-            background: #fff;
-            text-align: center;
+        .photo-item::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px dashed #d81b60;
+            z-index: 1;
+            opacity: 0.7;
         }
 
-        .photo-gallery h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: #d81b60;
-            margin-bottom: 50px;
-        }
-
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .photo-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            cursor: pointer;
-            transition: transform 0.4s ease;
-        }
-
-        .photo-card:hover {
-            transform: scale(1.05);
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-        }
-
-        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -311,269 +239,247 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 100;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
             justify-content: center;
             align-items: center;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
         }
 
         .lightbox.active {
             display: flex;
         }
 
-        /* Guest Input Section */
-        .guest-section {
-            padding: 80px 20px;
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Family Members */
+        .family {
+            padding: 120px 20px;
             background: #fce4ec;
             text-align: center;
         }
 
-        .guest-section h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
+        .family h2 {
+            font-family: 'Great_Vibes', cursive;
+            font-size: 5rem;
             color: #d81b60;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
+            text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
         }
 
-        .guest-form {
-            max-width: 600px;
+        .family-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .family-card {
+            width: 300px;
             background: #fff;
             padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffd700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .family-card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 20px 40px rgba(216, 27, 96, 0.3);
+        }
+
+        .family-card img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #d81b60;
+            margin-bottom: 25px;
+        }
+
+        /* Location & RSVP */
+        .location-rsvp {
+            padding: 120px 20px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .location-rsvp h2 {
+            font-family: 'Great_Vibes', cursive;
+            font-size: 5rem;
+            color: #d81b60;
+            margin-bottom: 60px;
+            text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
+        }
+
+        .map-container {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid #ffd700;
+        }
+
+        .rsvp-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fce4ec;
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffd700;
+        }
+
+        .rsvp-form .form-control {
+            border: 3px solid #d81b60;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .guest-form textarea {
-            width: 100%;
-            height: 150px;
             padding: 15px;
-            border: 2px solid #d81b60;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            resize: none;
-            transition: border-color 0.3s ease;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .guest-form textarea:focus {
-            outline: none;
-            border-color: #4a2c3d;
+        .rsvp-form .form-control:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
-        .guest-form button {
-            background: #d81b60;
+        .rsvp-form .btn {
+            background: linear-gradient(45deg, #d81b60, #ffd700);
+            border: none;
+            padding: 15px 50px;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-family: 'Playfair_Display', serif;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rsvp-form .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(216, 27, 96, 0.6);
+        }
+
+        /* Music Toggle */
+        .music-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #d81b60, #f06292);
             color: #fff;
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 1.2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.8rem;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s ease, transform 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
         }
 
-        .guest-form button:hover {
-            background: #4a2c3d;
-            transform: scale(1.05);
-        }
-
-        #guest-messages {
-            margin-top: 30px;
-            text-align: left;
-        }
-
-        .guest-message {
-            background: #fef6f9;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            animation: slideIn 0.5s ease;
-        }
-
-        /* Countdown with Circular Progress */
-        .countdown {
-            padding: 60px 20px;
-            background: #d81b60;
-            color: #fff;
-            text-align: center;
-        }
-
-        .countdown h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            margin-bottom: 30px;
-        }
-
-        .timer-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .timer-circle {
-            text-align: center;
-        }
-
-        .timer-circle svg {
-            width: 120px;
-            height: 120px;
-            transform: rotate(-90deg);
-        }
-
-        .timer-circle circle {
-            fill: none;
-            stroke: #fff;
-            stroke-width: 10;
-            stroke-dasharray: 314;
-            transition: stroke-dashoffset 1s linear;
-        }
-
-        .timer-circle span {
-            display: block;
-            font-size: 1.5rem;
-            margin-top: 10px;
+        .music-toggle:hover {
+            transform: scale(1.15);
         }
 
         /* Animations */
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 10px #d81b60; }
-            50% { text-shadow: 0 0 20px #d81b60, 0 0 30px #fce4ec; }
+        @keyframes float {
+            0% { transform: translateY(-50px) translateX(0); opacity: 1; }
+            50% { transform: translateY(50vh) translateX(20px); opacity: 0.7; }
+            100% { transform: translateY(100vh) translateX(-20px); opacity: 0; }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.95); }
+            100% { transform: scale(1); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease-out;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .header-content h1 { font-size: 3.5rem; }
-            .header-content .date { font-size: 1.2rem; }
-            .header-content .invitation { font-size: 1rem; }
-            .bride-image, .groom-image { width: 50%; height: 50%; }
-            .couple-card { width: 100%; height: 500px; }
-            .photo-card img { height: 250px; }
-            .countdown h2 { font-size: 3rem; }
-            .timer-circle svg { width: 100px; height: 100px; }
-            .timer-circle span { font-size: 1.2rem; }
+            .hero-title h1 { font-size: 5rem; }
+            .info-section .invitation { font-size: 1.4rem; }
+            .info-section .wedding-date { font-size: 2rem; }
+            .guest-message p { font-size: 1.3rem; }
+            .hero-images { flex-direction: column; }
+            .hero-image { width: 100%; height: 50%; }
+            .gallery h2, .family h2, .location-rsvp h2 { font-size: 3.5rem; }
+            .photo-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+            .photo-item img { height: 300px; }
+            .family-card { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="nav">
-        <a href="#header">Home</a>
-        <a href="#couple">Couple</a>
-        <a href="#venue">Venue</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#guest">Guest Book</a>
-        <a href="#countdown">Countdown</a>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">Vishal ♥ Swaranjali</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#family">Family</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#location">RSVP</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <!-- Header with Particle Background -->
-    <section class="header" id="header">
-        <div id="particles-js"></div>
-        <div class="header-images">
-            <img class="bride-image" src="https://lh3.googleusercontent.com/pw/AP1GczOr0vxyolPTy8zbukINiN-S2NgDwdRG0_mRc8sf6_MjaohTOYmSSsXLP_trowMKnziKp1sM5lVPMX90rvnnm7JYm_mVs91oHLptTeqaN5dukojEMJDF0SkWTEbYtq-biX6Dqtq3TZoGAwzcsn2Nzj9R=w427-h641-s-no-gm?authuser=0" alt="Swaranjali">
-            <img class="groom-image" src="https://lh3.googleusercontent.com/pw/AP1GczMCGloOC3LDL4T9eOGgI0xR4sp5GsZ8UvYekiAOzvj6IZSEB96cFrpGnaj2c0Yr4aK8Aq6J9ZJptULZ5Th7I0zA0Brp3ENeeRvN_PqiXkNQDXa1C7rY4uUMSpSwZhE5STfoyF6FEYjXmf6Zxx_eElLI=w427-h641-s-no-gm?authuser=0" alt="Vishal">
+    <!-- Hero Banner -->
+    <section class="hero" id="hero">
+        <div class="hero-images">
+            <img class="hero-image" src="https://lh3.googleusercontent.com/pw/AP1GczP0Qfao41DqxLPBlFLzpKUhvSg2mdupCrR_nMsUBGYRa5CtMpsl_HnCQ1_2mCYtk4MJf0MzmWCXTbNQRJhtL9VBAE_pcKobsIIANs8geE0ePXMHZGtcdth07K09NnvnSZNnd4iBAtne0W7TkzYmbD_C=w427-h641-s-no-gm?authuser=0" alt="Vishal">
+            <img class="hero-image" src="https://lh3.googleusercontent.com/pw/AP1GczMcKuZjq9eptR8T1V1fLrXi8f_n_iTUOgKkUPnS8x1pNlj7I5nIf7xX4sbs0dddiURJmlxk-ggLj7TyFC1JedbMgSAoDh0gXj_l0lJ8SfuZh-gg2sLIzzmjbhyngXuy5PfPAX-3JroEhF79vuSiBiGr=w427-h641-s-no-gm?authuser=0" alt="Swaranjali">
         </div>
-        <div class="header-content">
-            <h1>Vishal & Swaranjali</h1>
-            <p class="date">7th May 2025</p>
-            <p class="invitation">
-                With hearts full of love and joy, we invite you to celebrate our union. Join us as we embark on this beautiful journey together at Grand Sapphire Palace, Pune. Your presence will make our day even more special!
-            </p>
+        <div class="particles" id="particles"></div>
+        <div class="hero-title">
+            <h1>Vishal ♥ Swaranjali</h1>
         </div>
     </section>
 
-    <!-- Couple Information -->
-    <section class="couple-section animate-on-scroll" id="couple">
-        <h2>The Couple</h2>
-        <div class="couple-container">
-            <div class="couple-card">
-                <div class="couple-card-inner">
-                    <div class="couple-card-front">
-                        <img src="https://lh3.googleusercontent.com/pw/AP1GczOMMwOqWpsnnixPHvStiJaPYAa6mvrRLh-vmjLr5lhz9bYuCzyBBe28eQ5Q6E3SNYKqPhz_lCZ9GyoMvFm8hF5biHHcE7IuVuv5xXubrxm-jnuZKvQyIcqOS0zdJSmnIInKyzhVUvbo6vphgqxFJw1q=w489-h607-s-no-gm?authuser=0" alt="Vishal">
-                        <h3>Vishal Bhosale</h3>
-                        <p>The Groom - A skilled Data Scientist who turns numbers into stories.</p>
-                    </div>
-                    <div class="couple-card-back">
-                        <h3>About Vishal</h3>
-                        <p>Vishal’s analytical mind finds beauty in patterns, much like his love for life’s adventures. He enjoys music, travel, and unraveling life’s mysteries through data.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="couple-card">
-                <div class="couple-card-inner">
-                    <div class="couple-card-front">
-                        <img src="https://lh3.googleusercontent.com/pw/AP1GczPcEaQ0tLiwCXKm6H3GzJl_GFdQ7WNtWpgBzehqPEDJaacw0PvtYE2v3ZWm99NnJg0FBxF9_Wh0_NCEY4kSI-QtxAGypdvXVL08C3HghgsQfpFoEZ65ty_B-amgybBqhjHMr8xF3rygQqIQb7TMjXRd=w427-h641-s-no-gm?authuser=0" alt="Swaranjali">
-                        <h3>Swaranjali Chaudhari</h3>
-                        <p>The Bride - An accomplished professional with an MBA in Finance and degrees in Nutrition.</p>
-                    </div>
-                    <div class="couple-card-back">
-                        <h3>About Swaranjali</h3>
-                        <p>Swaranjali blends financial acumen with a passion for wellness, creating a life full of balance and grace. She loves art, dance, and nurturing those around her.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Info Section -->
+    <section class="info-section">
+        <p class="invitation">You are cordially invited by the Bhosale and Chaudhari families to join in the joyous celebration of Vishal and Swaranjali’s union, a timeless bond woven with love and tradition.</p>
+        <p class="wedding-date">7th May 2025</p>
     </section>
 
-    <!-- Venue Section -->
-    <section class="venue-section animate-on-scroll" id="venue">
-        <h2>The Venue</h2>
-        <div class="venue-card">
-            <img src="https://source.unsplash.com/random/800x300?venue" alt="Wedding Venue">
-            <h3>Grand Sapphire Palace</h3>
-            <p>123 Elegance Road, Pune, Maharashtra<br>7th May 2025, 6:00 PM onwards</p>
-            <button onclick="alert('Map feature coming soon!')">View Map</button>
-        </div>
+    <!-- Guest Message -->
+    <section class="guest-message">
+        <p>"Wishing Vishal and Swaranjali a lifetime of love, laughter, and endless happiness. May your journey together be as beautiful as the stars and as vibrant as a monsoon bloom." – A Dear Friend</p>
     </section>
 
     <!-- Photo Gallery -->
-    <section class="photo-gallery animate-on-scroll" id="gallery">
-        <h2>Our Journey</h2>
-        <div class="gallery-container">
-            <div class="photo-card" onclick="openLightbox('https://source.unsplash.com/random/300x300?couple')">
-                <img src="https://source.unsplash.com/random/300x300?couple" alt="Moment 1">
-                <div class="overlay">Our First Meeting</div>
+    <section class="gallery" id="gallery">
+        <h2 data-bs-toggle="animation" data-bs-animation="fadeInUp">Moments of Love</h2>
+        <div class="photo-grid">
+            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczPQMJ1OB7VXHMQGwnaN5Qx9fi4p9RyKQoCCxcNmQ2FoYK0RzcBUqpdWdLZdgZb9arctLVY9kZmewPP28AdxgGQKfLrhEkCUT_PqvGyuJLPoKnjYUDjetdMi46ixCOpYUjHnpuh-QljdgM4ey_wqNBIG=w962-h641-s-no-gm?authuser=0')">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPQMJ1OB7VXHMQGwnaN5Qx9fi4p9RyKQoCCxcNmQ2FoYK0RzcBUqpdWdLZdgZb9arctLVY9kZmewPP28AdxgGQKfLrhEkCUT_PqvGyuJLPoKnjYUDjetdMi46ixCOpYUjHnpuh-QljdgM4ey_wqNBIG=w962-h641-s-no-gm?authuser=0" alt="Together">
             </div>
-            <div class="photo-card" onclick="openLightbox('https://source.unsplash.com/random/300x301?couple')">
-                <img src="https://source.unsplash.com/random/300x301?couple" alt="Moment 2">
-                <div class="overlay">The Proposal</div>
+            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczPM_2jpI_fBaexE7GOSkDxz4ZZQ6ADwCiDxZfTgOpbuJpXOXclbY57LItny6EGpK469odZoWCsGJAxHvlcycDIFJ8ODkaLWLcIYgB2Nm0rud_fJAnbV2pMhoSMRgr-ksST57s1QCNNXx9S-J0sH3PPn=w962-h641-s-no-gm?authuser=0')">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPM_2jpI_fBaexE7GOSkDxz4ZZQ6ADwCiDxZfTgOpbuJpXOXclbY57LItny6EGpK469odZoWCsGJAxHvlcycDIFJ8ODkaLWLcIYgB2Nm0rud_fJAnbV2pMhoSMRgr-ksST57s1QCNNXx9S-J0sH3PPn=w962-h641-s-no-gm?authuser=0" alt="Pre-Wedding">
             </div>
-            <div class="photo-card" onclick="openLightbox('https://source.unsplash.com/random/300x302?couple')">
-                <img src="https://source.unsplash.com/random/300x302?couple" alt="Moment 3">
-                <div class="overlay">Engagement Bliss</div>
+            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczP0Qfao41DqxLPBlFLzpKUhvSg2mdupCrR_nMsUBGYRa5CtMpsl_HnCQ1_2mCYtk4MJf0MzmWCXTbNQRJhtL9VBAE_pcKobsIIANs8geE0ePXMHZGtcdth07K09NnvnSZNnd4iBAtne0W7TkzYmbD_C=w427-h641-s-no-gm?authuser=0')">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczP0Qfao41DqxLPBlFLzpKUhvSg2mdupCrR_nMsUBGYRa5CtMpsl_HnCQ1_2mCYtk4MJf0MzmWCXTbNQRJhtL9VBAE_pcKobsIIANs8geE0ePXMHZGtcdth07K09NnvnSZNnd4iBAtne0W7TkzYmbD_C=w427-h641-s-no-gm?authuser=0" alt="Vishal">
+            </div>
+            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczMcKuZjq9eptR8T1V1fLrXi8f_n_iTUOgKkUPnS8x1pNlj7I5nIf7xX4sbs0dddiURJmlxk-ggLj7TyFC1JedbMgSAoDh0gXj_l0lJ8SfuZh-gg2sLIzzmjbhyngXuy5PfPAX-3JroEhF79vuSiBiGr=w427-h641-s-no-gm?authuser=0')">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczMcKuZjq9eptR8T1V1fLrXi8f_n_iTUOgKkUPnS8x1pNlj7I5nIf7xX4sbs0dddiURJmlxk-ggLj7TyFC1JedbMgSAoDh0gXj_l0lJ8SfuZh-gg2sLIzzmjbhyngXuy5PfPAX-3JroEhF79vuSiBiGr=w427-h641-s-no-gm?authuser=0" alt="Swaranjali">
             </div>
         </div>
     </section>
@@ -583,118 +489,68 @@
         <img id="lightbox-img" src="" alt="Full Image">
     </div>
 
-    <!-- Guest Input Section -->
-    <section class="guest-section animate-on-scroll" id="guest">
-        <h2>From Our Guests</h2>
-        <div class="guest-form">
-            <textarea placeholder="Share your wishes, memories, or thoughts for Vishal & Swaranjali..."></textarea>
-            <button onclick="submitMessage()">Submit</button>
-            <div id="guest-messages"></div>
-        </div>
-    </section>
-
-    <!-- Countdown -->
-    <section class="countdown animate-on-scroll" id="countdown">
-        <h2>Days Until Forever</h2>
-        <div class="timer-container">
-            <div class="timer-circle">
-                <svg><circle cx="60" cy="60" r="50" id="days-circle"></circle></svg>
-                <span id="days">0</span> Days
+    <!-- Family Members -->
+    <section class="family" id="family">
+        <h2 data-bs-toggle="animation" data-bs-animation="fadeInUp">Our Families</h2>
+        <div class="family-container">
+            <div class="family-card" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="100">
+                <img src="https://source.unsplash.com/random/150x150?father" alt="Father">
+                <h3>Rajesh Bhosale</h3>
+                <p>Father of the Groom</p>
             </div>
-            <div class="timer-circle">
-                <svg><circle cx="60" cy="60" r="50" id="hours-circle"></circle></svg>
-                <span id="hours">0</span> Hours
+            <div class="family-card" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="200">
+                <img src="https://source.unsplash.com/random/151x150?mother" alt="Mother">
+                <h3>Meena Bhosale</h3>
+                <p>Mother of the Groom</p>
             </div>
-            <div class="timer-circle">
-                <svg><circle cx="60" cy="60" r="50" id="minutes-circle"></circle></svg>
-                <span id="minutes">0</span> Minutes
+            <div class="family-card" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="300">
+                <img src="https://source.unsplash.com/random/152x150?father" alt="Father">
+                <h3>Suresh Chaudhari</h3>
+                <p>Father of the Bride</p>
             </div>
-            <div class="timer-circle">
-                <svg><circle cx="60" cy="60" r="50" id="seconds-circle"></circle></svg>
-                <span id="seconds">0</span> Seconds
+            <div class="family-card" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="400">
+                <img src="https://source.unsplash.com/random/153x150?mother" alt="Mother">
+                <h3>Anita Chaudhari</h3>
+                <p>Mother of the Bride</p>
             </div>
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <!-- Location & RSVP -->
+    <section class="location-rsvp" id="location">
+        <h2 data-bs-toggle="animation" data-bs-animation="fadeInUp">Join Us</h2>
+        <div class="map-container" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="100">
+            <iframe width="100%" height="500" frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.153576678178!2d73.84968431489728!3d18.52043038740592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c07e2c4e9b0d%3A0xbecb8b8b8b8b8b8b!2sPune%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1698765432100" allowfullscreen></iframe>
+        </div>
+        <form class="rsvp-form" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="200">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+            <input type="email" class="form-control" placeholder="Your Email" required>
+            <textarea class="form-control" placeholder="Your Message" rows="5"></textarea>
+            <button type="button" class="btn btn-primary" onclick="submitRSVP()">RSVP</button>
+        </form>
+    </section>
+
+    <!-- Music Toggle -->
+    <button class="music-toggle" onclick="toggleMusic()">🎶</button>
+
+    <audio id="background-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-sweet.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Bootstrap JS and Custom Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Particles.js Initialization
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#d81b60' },
-                shape: { type: 'heart' },
-                opacity: { value: 0.5 },
-                size: { value: 5, random: true },
-                move: { enable: true, speed: 2, direction: 'none', random: true }
-            },
-            interactivity: {
-                events: { onhover: { enable: true, mode: 'repulse' } }
-            }
-        });
-
-        // Countdown Timer with Circular Progress
-        const weddingDate = new Date('May 7, 2025 18:00:00').getTime();
-        const totalDays = Math.ceil((weddingDate - new Date().getTime()) / (1000 * 60 * 60 * 24));
-        
-        const countdown = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
-
-            document.getElementById('days-circle').style.strokeDashoffset = 314 - (314 * (days / totalDays));
-            document.getElementById('hours-circle').style.strokeDashoffset = 314 - (314 * (hours / 24));
-            document.getElementById('minutes-circle').style.strokeDashoffset = 314 - (314 * (minutes / 60));
-            document.getElementById('seconds-circle').style.strokeDashoffset = 314 - (314 * (seconds / 60));
-
-            if (distance < 0) {
-                clearInterval(countdown);
-                document.querySelector('.timer-container').innerHTML = "We've Tied the Knot!";
-            }
-        }, 1000);
-
-        // Scroll Animation
-        const animateElements = document.querySelectorAll('.animate-on-scroll');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        animateElements.forEach(element => observer.observe(element));
-
-        // Guest Message Submission with Confetti
-        function submitMessage() {
-            const textarea = document.querySelector('.guest-form textarea');
-            const message = textarea.value.trim();
-            if (message) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'guest-message';
-                messageDiv.textContent = message;
-                document.getElementById('guest-messages').prepend(messageDiv);
-                textarea.value = '';
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#d81b60', '#fce4ec', '#4a2c3d']
-                });
-            }
+        // Particle Effects
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particlesContainer.appendChild(particle);
         }
 
-        // Lightbox Functionality
+        // Lightbox
         function openLightbox(src) {
             const lightbox = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
@@ -705,6 +561,46 @@
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
         }
+
+        // RSVP Submission
+        function submitRSVP() {
+            const name = document.querySelector('.rsvp-form input[type="text"]').value;
+            if (name) {
+                alert(`Thank you, ${name}! We’re overjoyed to have you celebrate Vishal and Swaranjali’s big day on May 7th!`);
+                document.querySelector('.rsvp-form').reset();
+            }
+        }
+
+        // Background Music
+        const audio = document.getElementById('background-music');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                document.querySelector('.music-toggle').textContent = '🎶';
+            } else {
+                audio.play();
+                document.querySelector('.music-toggle').textContent = '🔇';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Scroll Animations with Intersection Observer
+        const animateElements = document.querySelectorAll('[data-bs-toggle="animation"]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `${entry.target.dataset.bsAnimation} 1s ease-in-out forwards`;
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.3 });
+
+        animateElements.forEach(element => {
+            element.style.opacity = '0';
+            observer.observe(element);
+        });
     </script>
 </body>
 </html>
