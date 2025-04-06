@@ -62,28 +62,22 @@
             height: 100vh;
             overflow: hidden;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-end;
             text-align: center;
-            background: linear-gradient(135deg, rgba(216, 27, 96, 0.4), rgba(255, 245, 230, 0.8));
-        }
-
-        .hero-images {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            z-index: 1;
+            background: linear-gradient(135deg, rgba(216, 27, 96, 0.6), rgba(255, 245, 230, 0.7));
         }
 
         .hero-image {
-            width: 50%;
-            height: 100%;
+            position: absolute;
+            top: 60px; /* Shifted the image down by 20px */
+            left: 0;
+            width: 100%;
+            height: calc(100% - 60px); /* Adjusted height to account for the shift */
             object-fit: cover;
-            filter: brightness(90%);
+            filter: brightness(100%) contrast(110%);
             transition: transform 0.5s ease;
+            z-index: 1;
         }
 
         .hero:hover .hero-image {
@@ -98,10 +92,10 @@
 
         .hero-title h1 {
             font-family: 'Great_Vibes', cursive;
-            font-size: 9rem;
+            font-size: 6rem;
             color: #fff;
-            text-shadow: 0 0 25px rgba(216, 27, 96, 0.9), 0 0 15px rgba(255, 215, 0, 0.8);
-            animation: bounceIn 1.5s ease-in-out;
+            text-shadow: 0 0 30px rgba(216, 27, 96, 0.9), 0 0 20px rgba(255, 215, 0, 0.8);
+            animation: fadeInUp 1.5s ease-in-out;
         }
 
         /* Info Section */
@@ -171,11 +165,12 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Gallery */
+        /* Enhanced Gallery */
         .gallery {
             padding: 120px 20px;
             background: linear-gradient(to bottom, #fff, #fce4ec);
             text-align: center;
+            position: relative;
         }
 
         .gallery h2 {
@@ -186,38 +181,67 @@
             text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
         }
 
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+        .photo-masonry {
+            column-count: 3;
+            column-gap: 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .photo-item {
             position: relative;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            border-radius: 20px;
-            cursor: pointer;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
             border: 3px solid #ffd700;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
         }
 
         .photo-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(216, 27, 96, 0.4);
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 40px rgba(216, 27, 96, 0.5);
         }
 
         .photo-item img {
             width: 100%;
-            height: 400px;
-            object-fit: cover;
+            height: auto;
+            display: block;
             transition: transform 0.5s ease;
         }
 
         .photo-item:hover img {
             transform: scale(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(216, 27, 96, 0.4), rgba(255, 215, 0, 0.4));
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-overlay span {
+            font-family: 'Playfair_Display', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            text-align: center;
         }
 
         .photo-item::before {
@@ -227,9 +251,56 @@
             left: 10px;
             right: 10px;
             bottom: 10px;
-            border: 2px dashed #d81b60;
+            border: 2px dashed #fff;
             z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover::before {
             opacity: 0.7;
+        }
+
+        .engagement-collection {
+            margin-top: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .engagement-collection h3 {
+            font-family: 'Great_Vibes', cursive;
+            font-size: 3rem;
+            color: #d81b60;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
+        }
+
+        .engagement-collection p {
+            font-family: 'Playfair_Display', serif;
+            font-size: 1.4rem;
+            color: #4a2c3d;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .engagement-collection a.btn {
+            background: linear-gradient(45deg, #d81b60, #ffd700);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            font-family: 'Playfair_Display', serif;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+        }
+
+        .engagement-collection a.btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(216, 27, 96, 0.6);
         }
 
         .lightbox {
@@ -243,6 +314,7 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
         .lightbox.active {
@@ -251,118 +323,169 @@
 
         .lightbox img {
             max-width: 90%;
-            max-height: 90%;
+            max-height: 80%;
             border-radius: 20px;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
         }
 
-        /* Family Members */
-        .family {
-            padding: 120px 20px;
-            background: #fce4ec;
-            text-align: center;
+        .lightbox-caption {
+            font-family: 'Playfair_Display', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 15px;
+            text-shadow: 0 0 10px rgba(216, 27, 96, 0.5);
         }
 
-        .family h2 {
-            font-family: 'Great_Vibes', cursive;
-            font-size: 5rem;
-            color: #d81b60;
-            margin-bottom: 60px;
-            text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
-        }
-
-        .family-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .family-card {
-            width: 300px;
-            background: #fff;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            border: 2px solid #ffd700;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .family-card:hover {
-            transform: scale(1.08);
-            box-shadow: 0 20px 40px rgba(216, 27, 96, 0.3);
-        }
-
-        .family-card img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid #d81b60;
-            margin-bottom: 25px;
-        }
-
-        /* Location & RSVP */
-        .location-rsvp {
+        /* Location Section */
+        .location {
             padding: 120px 20px;
             background: #fff;
             text-align: center;
         }
 
-        .location-rsvp h2 {
+        .location h2 {
             font-family: 'Great_Vibes', cursive;
             font-size: 5rem;
             color: #d81b60;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
+        }
+
+        .venue-name {
+            font-family: 'Playfair_Display', serif;
+            font-size: 2rem;
+            color: #4a2c3d;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            animation: fadeInUp 2s ease-in-out;
         }
 
         .map-container {
             max-width: 1000px;
-            margin: 0 auto 60px;
+            margin: 0 auto;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             border-radius: 20px;
             overflow: hidden;
             border: 3px solid #ffd700;
         }
 
-        .rsvp-form {
+        /* Timer Section */
+        .timer-section {
+            padding: 100px 20px;
+            background: linear-gradient(to bottom, #fce4ec, #fffaf5);
+            text-align: center;
+            position: relative;
+        }
+
+        .timer-section h2 {
+            font-family: 'Great_Vibes', cursive;
+            font-size: 5rem;
+            color: #d81b60;
+            margin-bottom: 60px;
+            text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
+        }
+
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .timer-circle {
+            width: 150px;
+            height: 150px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(216, 27, 96, 0.2);
+            border: 4px solid #ffd700;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .timer-circle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(216, 27, 96, 0.1), transparent);
+            z-index: 0;
+        }
+
+        .timer-circle span {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #d81b60;
+            z-index: 1;
+        }
+
+        .timer-circle p {
+            font-size: 1.2rem;
+            color: #4a2c3d;
+            margin: 0;
+            z-index: 1;
+        }
+
+        /* Wishes Section */
+        .wishes-section {
+            padding: 100px 20px;
+            background: #fce4ec;
+            text-align: center;
+        }
+
+        .wishes-section h2 {
+            font-family: 'Great_Vibes', cursive;
+            font-size: 5rem;
+            color: #d81b60;
+            margin-bottom: 60px;
+            text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
+        }
+
+        .wishes-container {
             max-width: 700px;
             margin: 0 auto;
-            background: #fce4ec;
-            padding: 50px;
+            background: #fff;
+            padding: 40px;
             border-radius: 25px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             border: 2px solid #ffd700;
         }
 
-        .rsvp-form .form-control {
+        .wishes-container textarea {
+            width: 100%;
             border: 3px solid #d81b60;
             border-radius: 15px;
             padding: 15px;
             font-size: 1.2rem;
             margin-bottom: 25px;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            resize: none;
         }
 
-        .rsvp-form .form-control:focus {
+        .wishes-container textarea:focus {
             border-color: #ffd700;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            outline: none;
         }
 
-        .rsvp-form .btn {
+        .wishes-container button {
             background: linear-gradient(45deg, #d81b60, #ffd700);
             border: none;
             padding: 15px 50px;
             border-radius: 30px;
             font-size: 1.4rem;
             font-family: 'Playfair_Display', serif;
+            color: #fff;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .rsvp-form .btn:hover {
+        .wishes-container button:hover {
             transform: scale(1.1);
             box-shadow: 0 0 30px rgba(216, 27, 96, 0.6);
         }
@@ -396,30 +519,37 @@
             100% { transform: translateY(100vh) translateX(-20px); opacity: 0; }
         }
 
-        @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.3); }
-            50% { opacity: 1; transform: scale(1.05); }
-            70% { transform: scale(0.95); }
-            100% { transform: scale(1); }
-        }
-
         @keyframes fadeInUp {
             0% { opacity: 0; transform: translateY(40px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-title h1 { font-size: 5rem; }
+            .hero-title h1 { font-size: 4rem; }
             .info-section .invitation { font-size: 1.4rem; }
             .info-section .wedding-date { font-size: 2rem; }
             .guest-message p { font-size: 1.3rem; }
-            .hero-images { flex-direction: column; }
-            .hero-image { width: 100%; height: 50%; }
-            .gallery h2, .family h2, .location-rsvp h2 { font-size: 3.5rem; }
-            .photo-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-            .photo-item img { height: 300px; }
-            .family-card { width: 100%; }
+            .gallery h2, .location h2, .timer-section h2, .wishes-section h2 { font-size: 3.5rem; }
+            .photo-masonry { column-count: 2; }
+            .timer-circle { width: 120px; height: 120px; }
+            .timer-circle span { font-size: 2.5rem; }
+            .timer-circle p { font-size: 1rem; }
+            .wishes-container { padding: 20px; }
+            .venue-name { font-size: 1.5rem; }
+            .engagement-collection h3 { font-size: 2.5rem; }
+            .engagement-collection p { font-size: 1.2rem; }
+            .engagement-collection a.btn { font-size: 1.1rem; padding: 12px 30px; }
+        }
+
+        @media (max-width: 480px) {
+            .photo-masonry { column-count: 1; }
         }
     </style>
 </head>
@@ -433,21 +563,17 @@
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link praysh" href="#hero">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#family">Family</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#location">RSVP</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#location">Location</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Banner -->
+    <!-- Hero Banner with Single Image -->
     <section class="hero" id="hero">
-        <div class="hero-images">
-            <img class="hero-image" src="https://lh3.googleusercontent.com/pw/AP1GczP0Qfao41DqxLPBlFLzpKUhvSg2mdupCrR_nMsUBGYRa5CtMpsl_HnCQ1_2mCYtk4MJf0MzmWCXTbNQRJhtL9VBAE_pcKobsIIANs8geE0ePXMHZGtcdth07K09NnvnSZNnd4iBAtne0W7TkzYmbD_C=w427-h641-s-no-gm?authuser=0" alt="Vishal">
-            <img class="hero-image" src="https://lh3.googleusercontent.com/pw/AP1GczMcKuZjq9eptR8T1V1fLrXi8f_n_iTUOgKkUPnS8x1pNlj7I5nIf7xX4sbs0dddiURJmlxk-ggLj7TyFC1JedbMgSAoDh0gXj_l0lJ8SfuZh-gg2sLIzzmjbhyngXuy5PfPAX-3JroEhF79vuSiBiGr=w427-h641-s-no-gm?authuser=0" alt="Swaranjali">
-        </div>
+        <img class="hero-image" src="https://lh3.googleusercontent.com/pw/AP1GczPQMJ1OB7VXHMQGwnaN5Qx9fi4p9RyKQoCCxcNmQ2FoYK0RzcBUqpdWdLZdgZb9arctLVY9kZmewPP28AdxgGQKfLrhEkCUT_PqvGyuJLPoKnjYUDjetdMi46ixCOpYUjHnpuh-QljdgM4ey_wqNBIG=w911-h607-s-no-gm?authuser=0" alt="Vishal and Swaranjali">
         <div class="particles" id="particles"></div>
         <div class="hero-title">
             <h1>Vishal ♥ Swaranjali</h1>
@@ -465,69 +591,68 @@
         <p>"Wishing Vishal and Swaranjali a lifetime of love, laughter, and endless happiness. May your journey together be as beautiful as the stars and as vibrant as a monsoon bloom." – A Dear Friend</p>
     </section>
 
-    <!-- Photo Gallery -->
+    <!-- Enhanced Photo Gallery with Engagement Collection -->
     <section class="gallery" id="gallery">
         <h2 data-bs-toggle="animation" data-bs-animation="fadeInUp">Moments of Love</h2>
-        <div class="photo-grid">
-            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczPQMJ1OB7VXHMQGwnaN5Qx9fi4p9RyKQoCCxcNmQ2FoYK0RzcBUqpdWdLZdgZb9arctLVY9kZmewPP28AdxgGQKfLrhEkCUT_PqvGyuJLPoKnjYUDjetdMi46ixCOpYUjHnpuh-QljdgM4ey_wqNBIG=w962-h641-s-no-gm?authuser=0')">
+        <div class="photo-masonry">
+            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczPQMJ1OB7VXHMQGwnaN5Qx9fi4p9RyKQoCCxcNmQ2FoYK0RzcBUqpdWdLZdgZb9arctLVY9kZmewPP28AdxgGQKfLrhEkCUT_PqvGyuJLPoKnjYUDjetdMi46ixCOpYUjHnpuh-QljdgM4ey_wqNBIG=w962-h641-s-no-gm?authuser=0', 'Together Forever')">
                 <img src="https://lh3.googleusercontent.com/pw/AP1GczPQMJ1OB7VXHMQGwnaN5Qx9fi4p9RyKQoCCxcNmQ2FoYK0RzcBUqpdWdLZdgZb9arctLVY9kZmewPP28AdxgGQKfLrhEkCUT_PqvGyuJLPoKnjYUDjetdMi46ixCOpYUjHnpuh-QljdgM4ey_wqNBIG=w962-h641-s-no-gm?authuser=0" alt="Together">
+                <div class="photo-overlay"><span>Together Forever</span></div>
             </div>
-            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczPM_2jpI_fBaexE7GOSkDxz4ZZQ6ADwCiDxZfTgOpbuJpXOXclbY57LItny6EGpK469odZoWCsGJAxHvlcycDIFJ8ODkaLWLcIYgB2Nm0rud_fJAnbV2pMhoSMRgr-ksST57s1QCNNXx9S-J0sH3PPn=w962-h641-s-no-gm?authuser=0')">
+            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczPM_2jpI_fBaexE7GOSkDxz4ZZQ6ADwCiDxZfTgOpbuJpXOXclbY57LItny6EGpK469odZoWCsGJAxHvlcycDIFJ8ODkaLWLcIYgB2Nm0rud_fJAnbV2pMhoSMRgr-ksST57s1QCNNXx9S-J0sH3PPn=w962-h641-s-no-gm?authuser=0', 'Pre-Wedding Bliss')">
                 <img src="https://lh3.googleusercontent.com/pw/AP1GczPM_2jpI_fBaexE7GOSkDxz4ZZQ6ADwCiDxZfTgOpbuJpXOXclbY57LItny6EGpK469odZoWCsGJAxHvlcycDIFJ8ODkaLWLcIYgB2Nm0rud_fJAnbV2pMhoSMRgr-ksST57s1QCNNXx9S-J0sH3PPn=w962-h641-s-no-gm?authuser=0" alt="Pre-Wedding">
+                <div class="photo-overlay"><span>Pre-Wedding Bliss</span></div>
             </div>
-            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczP0Qfao41DqxLPBlFLzpKUhvSg2mdupCrR_nMsUBGYRa5CtMpsl_HnCQ1_2mCYtk4MJf0MzmWCXTbNQRJhtL9VBAE_pcKobsIIANs8geE0ePXMHZGtcdth07K09NnvnSZNnd4iBAtne0W7TkzYmbD_C=w427-h641-s-no-gm?authuser=0')">
+            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczP0Qfao41DqxLPBlFLzpKUhvSg2mdupCrR_nMsUBGYRa5CtMpsl_HnCQ1_2mCYtk4MJf0MzmWCXTbNQRJhtL9VBAE_pcKobsIIANs8geE0ePXMHZGtcdth07K09NnvnSZNnd4iBAtne0W7TkzYmbD_C=w427-h641-s-no-gm?authuser=0', 'Vishal’s Charm')">
                 <img src="https://lh3.googleusercontent.com/pw/AP1GczP0Qfao41DqxLPBlFLzpKUhvSg2mdupCrR_nMsUBGYRa5CtMpsl_HnCQ1_2mCYtk4MJf0MzmWCXTbNQRJhtL9VBAE_pcKobsIIANs8geE0ePXMHZGtcdth07K09NnvnSZNnd4iBAtne0W7TkzYmbD_C=w427-h641-s-no-gm?authuser=0" alt="Vishal">
+                <div class="photo-overlay"><span>Vishal’s Charm</span></div>
             </div>
-            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczMcKuZjq9eptR8T1V1fLrXi8f_n_iTUOgKkUPnS8x1pNlj7I5nIf7xX4sbs0dddiURJmlxk-ggLj7TyFC1JedbMgSAoDh0gXj_l0lJ8SfuZh-gg2sLIzzmjbhyngXuy5PfPAX-3JroEhF79vuSiBiGr=w427-h641-s-no-gm?authuser=0')">
+            <div class="photo-item" onclick="openLightbox('https://lh3.googleusercontent.com/pw/AP1GczMcKuZjq9eptR8T1V1fLrXi8f_n_iTUOgKkUPnS8x1pNlj7I5nIf7xX4sbs0dddiURJmlxk-ggLj7TyFC1JedbMgSAoDh0gXj_l0lJ8SfuZh-gg2sLIzzmjbhyngXuy5PfPAX-3JroEhF79vuSiBiGr=w427-h641-s-no-gm?authuser=0', 'Swaranjali’s Grace')">
                 <img src="https://lh3.googleusercontent.com/pw/AP1GczMcKuZjq9eptR8T1V1fLrXi8f_n_iTUOgKkUPnS8x1pNlj7I5nIf7xX4sbs0dddiURJmlxk-ggLj7TyFC1JedbMgSAoDh0gXj_l0lJ8SfuZh-gg2sLIzzmjbhyngXuy5PfPAX-3JroEhF79vuSiBiGr=w427-h641-s-no-gm?authuser=0" alt="Swaranjali">
+                <div class="photo-overlay"><span>Swaranjali’s Grace</span></div>
             </div>
+        </div>
+        <!-- Engagement Photos Collection -->
+        <div class="engagement-collection" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="200">
+            <h3>Engagement Memories</h3>
+            <p>Relive the magic of Vishal and Swaranjali’s engagement through our cherished collection of moments, filled with love, laughter, and celebration.</p>
+            <a href="https://photos.app.goo.gl/2b5KmZs3reUSb3go7" target="_blank" class="btn">View Full Collection</a>
         </div>
     </section>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <img id="lightbox-img" src="" alt="Full Image">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
 
-    <!-- Family Members -->
-    <section class="family" id="family">
-        <h2 data-bs-toggle="animation" data-bs-animation="fadeInUp">Our Families</h2>
-        <div class="family-container">
-            <div class="family-card" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="100">
-                <img src="https://source.unsplash.com/random/150x150?father" alt="Father">
-                <h3>Rajesh Bhosale</h3>
-                <p>Father of the Groom</p>
-            </div>
-            <div class="family-card" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="200">
-                <img src="https://source.unsplash.com/random/151x150?mother" alt="Mother">
-                <h3>Meena Bhosale</h3>
-                <p>Mother of the Groom</p>
-            </div>
-            <div class="family-card" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="300">
-                <img src="https://source.unsplash.com/random/152x150?father" alt="Father">
-                <h3>Suresh Chaudhari</h3>
-                <p>Father of the Bride</p>
-            </div>
-            <div class="family-card" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="400">
-                <img src="https://source.unsplash.com/random/153x150?mother" alt="Mother">
-                <h3>Anita Chaudhari</h3>
-                <p>Mother of the Bride</p>
-            </div>
+    <!-- Location Section with Venue Name -->
+    <section class="location" id="location">
+        <h2 data-bs-toggle="animation" data-bs-animation="fadeInUp">Join Us</h2>
+        <div class="venue-name" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="100">Karmaveer Bhaurao Patil Mahavidyalaya, Pandharpur (Autonomous)</div>
+        <div class="map-container" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="200">
+            <iframe width="100%" height="500" frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.614013614614!2d75.32361431488547!3d17.67455398789747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc418e8e8e8e8e8%3A0x8e8e8e8e8e8e8e8e!2sKarmaveer%20Bhaurao%20Patil%20Mahavidyalaya%2C%20Pandharpur%20(Autonomous)!5e0!3m2!1sen!2sin!4v1698765432100" allowfullscreen></iframe>
         </div>
     </section>
 
-    <!-- Location & RSVP -->
-    <section class="location-rsvp" id="location">
-        <h2 data-bs-toggle="animation" data-bs-animation="fadeInUp">Join Us</h2>
-        <div class="map-container" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="100">
-            <iframe width="100%" height="500" frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.153576678178!2d73.84968431489728!3d18.52043038740592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c07e2c4e9b0d%3A0xbecb8b8b8b8b8b8b!2sPune%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1698765432100" allowfullscreen></iframe>
+    <!-- Timer Section -->
+    <section class="timer-section" id="timer">
+        <h2 data-bs-toggle="animation" data-bs-animation="fadeInUp">Counting Down to Our Big Day</h2>
+        <div class="timer-container">
+            <div class="timer-circle"><span id="days">0</span><p>Days</p></div>
+            <div class="timer-circle"><span id="hours">0</span><p>Hours</p></div>
+            <div class="timer-circle"><span id="minutes">0</span><p>Minutes</p></div>
+            <div class="timer-circle"><span id="seconds">0</span><p>Seconds</p></div>
         </div>
-        <form class="rsvp-form" data-bs-toggle="animation" data-bs-animation="fadeInUp" data-bs-delay="200">
-            <input type="text" class="form-control" placeholder="Your Name" required>
-            <input type="email" class="form-control" placeholder="Your Email" required>
-            <textarea class="form-control" placeholder="Your Message" rows="5"></textarea>
-            <button type="button" class="btn btn-primary" onclick="submitRSVP()">RSVP</button>
-        </form>
+    </section>
+
+    <!-- Wishes Section -->
+    <section class="wishes-section" id="wishes">
+        <h2 data-bs-toggle="animation" data-bs-animation="fadeInUp">Leave Your Wishes</h2>
+        <div class="wishes-container">
+            <textarea rows="5" placeholder="Write your wishes for Vishal and Swaranjali here..."></textarea>
+            <button onclick="submitWish()">Submit Wish</button>
+        </div>
     </section>
 
     <!-- Music Toggle -->
@@ -542,19 +667,23 @@
     <script>
         // Particle Effects
         const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = `${Math.random() * 100}%`;
             particle.style.animationDelay = `${Math.random() * 5}s`;
+            particle.style.width = `${Math.random() * 10 + 5}px`;
+            particle.style.height = particle.style.width;
             particlesContainer.appendChild(particle);
         }
 
-        // Lightbox
-        function openLightbox(src) {
+        // Lightbox with Caption
+        function openLightbox(src, caption) {
             const lightbox = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
+            const captionElement = document.getElementById('lightbox-caption');
             img.src = src;
+            captionElement.textContent = caption;
             lightbox.classList.add('active');
         }
 
@@ -562,12 +691,14 @@
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        // RSVP Submission
-        function submitRSVP() {
-            const name = document.querySelector('.rsvp-form input[type="text"]').value;
-            if (name) {
-                alert(`Thank you, ${name}! We’re overjoyed to have you celebrate Vishal and Swaranjali’s big day on May 7th!`);
-                document.querySelector('.rsvp-form').reset();
+        // Submit Wish
+        function submitWish() {
+            const wish = document.querySelector('.wishes-container textarea').value;
+            if (wish) {
+                alert(`Thank you for your beautiful wish: "${wish}"! Vishal and Swaranjali will cherish it!`);
+                document.querySelector('.wishes-container textarea').value = '';
+            } else {
+                alert("Please write a wish before submitting!");
             }
         }
 
@@ -585,6 +716,28 @@
             }
             isPlaying = !isPlaying;
         }
+
+        // Countdown Timer
+        const weddingDate = new Date("May 7, 2025 00:00:00").getTime();
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.querySelector(".timer-container").innerHTML = "<h3>The Day Has Arrived!</h3>";
+            }
+        }, 1000);
 
         // Scroll Animations with Intersection Observer
         const animateElements = document.querySelectorAll('[data-bs-toggle="animation"]');
